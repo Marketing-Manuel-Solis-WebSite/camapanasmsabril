@@ -1,4 +1,10 @@
 import Image from "next/image";
+import {
+  CallLink,
+  ScrollDepthTracker,
+  SectionView,
+  SessionTracker,
+} from "./_components/tracking";
 
 const TELEFONO_DISPLAY = "+52 55 0000 0000";
 const TELEFONO_TEL = "+525500000000";
@@ -11,11 +17,17 @@ const HAS_IMAGE = false;
 export default function Home() {
   return (
     <div className="relative flex min-h-dvh flex-col bg-bg text-ink">
+      <SessionTracker />
+      <ScrollDepthTracker />
       <Header />
       <main className="flex-1 pb-36">
         <Hero />
-        <TrustBar />
-        <ClosingCTA />
+        <SectionView name="trust_bar">
+          <TrustBar />
+        </SectionView>
+        <SectionView name="closing_cta" threshold={0.5}>
+          <ClosingCTA />
+        </SectionView>
       </main>
       <Footer />
       <StickyCall />
@@ -42,13 +54,15 @@ function Header() {
             <p className="kicker text-[0.58rem] text-gold-deep">Firma Legal</p>
           </div>
         </div>
-        <a
-          href={`tel:${TELEFONO_TEL}`}
-          aria-label="Llamar ahora"
+        <CallLink
+          location="header"
+          phone={TELEFONO_TEL}
+          phoneDisplay={TELEFONO_DISPLAY}
+          ariaLabel="Llamar ahora"
           className="grid h-10 w-10 place-items-center rounded-full bg-ink text-white transition active:scale-95"
         >
           <PhoneIcon className="h-[18px] w-[18px]" />
-        </a>
+        </CallLink>
       </div>
     </header>
   );
@@ -80,7 +94,7 @@ function Hero() {
           <HeroImage />
 
           <div className="mt-7 w-full">
-            <BigCallButton />
+            <BigCallButton location="hero" />
             <p className="mt-3 text-xs text-muted">
               Atención personal · Confidencialidad absoluta
             </p>
@@ -196,7 +210,7 @@ function ClosingCTA() {
           Cuéntanos tu situación. Te respondemos con claridad y honestidad.
         </p>
         <div className="mt-6">
-          <BigCallButton />
+          <BigCallButton location="closing" />
         </div>
       </div>
     </section>
@@ -205,10 +219,16 @@ function ClosingCTA() {
 
 /* -------------------- Big Call Button (reusable) -------------------- */
 
-function BigCallButton() {
+function BigCallButton({
+  location,
+}: {
+  location: "hero" | "closing";
+}) {
   return (
-    <a
-      href={`tel:${TELEFONO_TEL}`}
+    <CallLink
+      location={location}
+      phone={TELEFONO_TEL}
+      phoneDisplay={TELEFONO_DISPLAY}
       className="cta-shine relative flex h-16 w-full items-center justify-center gap-3 rounded-full bg-gold-deep px-6 text-white shadow-[0_18px_40px_-12px_rgba(154,122,69,0.55)] transition active:scale-[0.98]"
     >
       <span className="pulse-ring" aria-hidden />
@@ -219,7 +239,7 @@ function BigCallButton() {
       <span className="text-sm font-medium text-white/85 tabular-nums">
         · {TELEFONO_DISPLAY}
       </span>
-    </a>
+    </CallLink>
   );
 }
 
@@ -251,8 +271,10 @@ function StickyCall() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 safe-bottom bg-gradient-to-t from-bg via-bg/95 to-bg/0 pt-6">
       <div className="mx-auto w-full max-w-md px-4">
-        <a
-          href={`tel:${TELEFONO_TEL}`}
+        <CallLink
+          location="sticky"
+          phone={TELEFONO_TEL}
+          phoneDisplay={TELEFONO_DISPLAY}
           className="cta-shine relative flex h-16 w-full items-center justify-center gap-3 rounded-full bg-ink text-white shadow-[0_18px_40px_-10px_rgba(0,0,0,0.45)] transition active:scale-[0.98]"
         >
           <span
@@ -264,7 +286,7 @@ function StickyCall() {
             <PhoneIcon className="h-5 w-5" />
           </span>
           <span className="text-base font-semibold">Llamar ahora</span>
-        </a>
+        </CallLink>
       </div>
     </div>
   );
