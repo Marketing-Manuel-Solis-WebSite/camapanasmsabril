@@ -108,25 +108,17 @@ function HeroImage() {
   return (
     <div className="relative mt-7 w-full">
       <div className="absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-gold/15 via-transparent to-transparent blur-2xl" />
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem] ring-1 ring-[var(--line-strong)] bg-bg-cream">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[1.5rem] ring-1 ring-[var(--line-strong)] bg-bg-cream">
         {HAS_IMAGE ? (
-          <>
-            <Image
-              src={IMAGEN_CAMPANA}
-              alt="Manuel Solís · Firma Legal"
-              fill
-              priority
-              sizes="(max-width: 480px) 100vw, 420px"
-              className="object-cover"
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-            <div className="absolute inset-x-5 bottom-5 text-left">
-              <p className="kicker text-gold-soft">Caso a caso</p>
-              <p className="mt-1 font-serif text-xl leading-tight text-white">
-                Atención humana, resultados claros.
-              </p>
-            </div>
-          </>
+          <Image
+            src={IMAGEN_CAMPANA}
+            alt="Manuel Solís · Firma Legal"
+            fill
+            priority
+            quality={95}
+            sizes="(max-width: 480px) 100vw, (max-width: 768px) 90vw, 448px"
+            className="object-cover"
+          />
         ) : (
           <HeroPlaceholder />
         )}
