@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --bg-soft: #f7f5f0;
+  --bg-cream: #faf7f1;
+  --ink: #111418;
+  --ink-soft: #2b3138;
+  --muted: #6b7280;
+  --gold: #b8935a;
+  --gold-deep: #9a7a45;
+  --gold-soft: #d4b682;
+  --line: rgba(17, 20, 24, 0.08);
+  --line-strong: rgba(17, 20, 24, 0.14);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-bg-cream: var(--bg-cream);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.kicker {
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.cta-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.cta-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+.cta-shine:hover::after,
+.cta-shine:active::after {
+  transform: translateX(120%);
+}
+
+.pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  box-shadow: 0 0 0 0 rgba(184, 147, 90, 0.55);
+  animation: pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  pointer-events: none;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(184, 147, 90, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(184, 147, 90, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(184, 147, 90, 0);
+  }
+}
+
+.reveal {
+  animation: reveal 0.8s ease both;
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .pulse-ring {
+    animation: none;
+  }
+  .cta-shine::after {
+    display: none;
+  }
+}
+
+/* Respetar safe-area iOS para el sticky */
+.safe-bottom {
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
 }
