@@ -11,8 +11,7 @@ const TELEFONO_TEL = "+525500000000";
 const IMAGEN_CAMPANA = "/imagen-campana.png";
 const LOGO_ICON = "/android-chrome-512x512.png";
 
-// Cambia a true cuando coloques /public/imagen-campana.jpg
-const HAS_IMAGE = false;
+const HAS_IMAGE = true;
 
 export default function Home() {
   return (
