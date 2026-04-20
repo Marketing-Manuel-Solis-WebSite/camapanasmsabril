@@ -6,10 +6,11 @@ import {
   SessionTracker,
 } from "./_components/tracking";
 
-const TELEFONO_DISPLAY = "+52 55 0000 0000";
-const TELEFONO_TEL = "+525500000000";
+const TELEFONO_DISPLAY = "+1 (713) 322-7646";
+const TELEFONO_TEL = "+17133227646";
 const IMAGEN_CAMPANA = "/imagen-campana.png";
 const LOGO_ICON = "/android-chrome-512x512.png";
+const LOGO_HEADER = "/LogoManuelSolis.png";
 
 const HAS_IMAGE = true;
 
@@ -40,18 +41,15 @@ function Header() {
   return (
     <header className="sticky top-0 z-20 w-full border-b border-[var(--line)] bg-bg/85 backdrop-blur">
       <div className="mx-auto flex w-full max-w-md items-center justify-between px-5 py-3.5">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center">
           <Image
-            src={LOGO_ICON}
-            alt="Manuel Solís"
-            width={34}
-            height={34}
-            className="rounded-full ring-1 ring-[var(--line-strong)]"
+            src={LOGO_HEADER}
+            alt="Law Offices of Manuel Solis"
+            width={160}
+            height={66}
+            priority
+            className="h-10 w-auto"
           />
-          <div className="leading-tight">
-            <p className="font-serif text-[1.05rem] text-ink">Manuel Solís</p>
-            <p className="kicker text-[0.58rem] text-gold-deep">Firma Legal</p>
-          </div>
         </div>
         <CallLink
           location="header"

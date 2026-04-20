@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# large media (exceeds GitHub 100MB limit)
+/public/video
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
