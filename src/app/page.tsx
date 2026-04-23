@@ -192,7 +192,7 @@ function ClosingCTA() {
       <div className="rounded-3xl border border-[var(--line-strong)] bg-bg-cream px-6 py-10 text-center">
         <span className="kicker text-gold-deep">Orientación directa</span>
         <h2 className="mt-3 font-serif text-[1.75rem] leading-tight text-ink">
-          Una llamada puede cambiar{" "}
+          Una llamada podria cambiar{" "}
           <em className="not-italic text-gold-deep">todo tu caso</em>.
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-ink-soft">
