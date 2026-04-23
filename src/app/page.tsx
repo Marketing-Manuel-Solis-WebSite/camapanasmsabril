@@ -79,13 +79,13 @@ function Hero() {
           </span>
 
           <h1 className="mt-5 font-serif text-[2.35rem] leading-[1.05] tracking-tight text-ink">
-            Tu caso merece una{" "}
-            <em className="not-italic text-gold-deep">defensa seria</em>.
+            Conoce tus{" "}
+            <em className="not-italic text-gold-deep">opciones legales</em>.
           </h1>
 
           <p className="mt-4 max-w-xs text-[0.95rem] leading-relaxed text-ink-soft">
-            Habla directo con un abogado. Respuestas claras y acompañamiento
-            real.
+            En Law Offices of Manuel Solís, +35 años de experiencia y 50,000
+            casos ganados nos respaldan.
           </p>
 
           <HeroImage />
